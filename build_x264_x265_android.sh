@@ -1,5 +1,8 @@
 #!/bin/bash
 
+git clone https://code.videolan.org/videolan/x264.git
+git clone https://github.com/videolan/x265.git
+
 NDK=$ANDROID_NDK_HOME
 API=28
 HOST_TAG="darwin-x86_64"
