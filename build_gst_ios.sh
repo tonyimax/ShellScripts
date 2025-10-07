@@ -1,0 +1,1 @@
+meson setup --cross-file ios_cross.txt --reconfigure ../gst_ios_build
