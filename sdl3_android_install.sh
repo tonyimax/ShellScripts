@@ -1,8 +1,17 @@
 #!/bin/bash
 
 # 安装目录 for app darwin ,for ubuntu linux
-OS_NAME=darwin
-NDK_HOME=${ANDROID_HOME}/ndk/25.2.9519653
+#for macos
+#OS_NAME=darwin
+
+#for linux
+OS_NAME=linux
+
+#for macos
+#NDK_HOME=${ANDROID_HOME}/ndk/25.2.9519653
+#for linux
+NDK_HOME=${ANDROID_HOME}/ndk/25.1.8937393
+
 INSTALL_DIR=$HOME/Desktop/sdl3_install_android
 BUILD_DIR=$HOME/Desktop/sdl3_build_android
 

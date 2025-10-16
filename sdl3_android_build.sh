@@ -1,11 +1,18 @@
 #!/bin/bash
 
 # 设置变量 macos 其他系统需要更改路径
-SDL_SOURCE_DIR=$HOME/Desktop/SDL
-BUILD_DIR=${SDL_SOURCE_DIR}/../sdl3_build_android
-NDK_PATH=$HOME/Library/Android/Sdk/Ndk/25.2.9519653
-CMAKE_BIN=/opt/homebrew/bin/cmake
-NINJA_BIN=/opt/homebrew/bin/ninja
+SDL_SOURCE_DIR="$HOME/Desktop/SDL"
+BUILD_DIR="${SDL_SOURCE_DIR}/../sdl3_build_android"
+#for macos
+#NDK_PATH=$HOME/Library/Android/Sdk/Ndk/25.2.9519653
+#for linux
+NDK_PATH=$HOME/Android/Sdk/ndk/25.1.8937393
+#for macos
+#CMAKE_BIN=/opt/homebrew/bin/cmake
+#NINJA_BIN=/opt/homebrew/bin/ninja
+#for linux
+CMAKE_BIN=cmake
+NINJA_BIN=ninja
 
 # 支持的 ABI 列表
 ABIS=("arm64-v8a" "armeabi-v7a" "x86_64" "x86")
@@ -39,14 +46,14 @@ for ABI in "${ABIS[@]}"; do
     
     # 创建 ABI 特定的构建目录
     ABI_BUILD_DIR=${BUILD_DIR}/${ABI}
-    mkdir -p ${ABI_BUILD_DIR}
-    cd ${ABI_BUILD_DIR}
+    mkdir -p "${ABI_BUILD_DIR}"
+    cd "${ABI_BUILD_DIR}" || exit
     
     # 运行 CMake 配置
-    ${CMAKE_BIN} ${SDL_SOURCE_DIR} \
-        -DCMAKE_TOOLCHAIN_FILE=${NDK_PATH}/build/cmake/android.toolchain.cmake \
-        -DANDROID_ABI=${ANDROID_ABI} \
-        -DANDROID_PLATFORM=${ANDROID_PLATFORM} \
+    ${CMAKE_BIN} "${SDL_SOURCE_DIR}" \
+        -DCMAKE_TOOLCHAIN_FILE="${NDK_PATH}/build/cmake/android.toolchain.cmake" \
+        -DANDROID_ABI="${ANDROID_ABI}" \
+        -DANDROID_PLATFORM="${ANDROID_PLATFORM}" \
         -DANDROID_STL=c++_shared \
         -DCMAKE_BUILD_TYPE=Release \
         -DSDL_SHARED=ON \
@@ -67,8 +74,8 @@ for ABI in "${ABIS[@]}"; do
         -GNinja
     
     # 编译
-    # ${NINJA_BIN} -j$(nproc) #for linux
-    ${NINJA_BIN} -j6  # macos or win
+    ${NINJA_BIN} -j$(nproc) #for linux
+    #${NINJA_BIN} -j6  # macos or win
     
     echo "Build completed for ${ABI}"
 done
