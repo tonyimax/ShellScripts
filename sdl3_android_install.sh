@@ -3,8 +3,8 @@
 # 安装目录 for app darwin ,for ubuntu linux
 OS_NAME=darwin
 NDK_HOME=${ANDROID_HOME}/ndk/25.2.9519653
-INSTALL_DIR=sdl3_install_android
-BUILD_DIR=sdl3_build_android
+INSTALL_DIR=$HOME/Desktop/sdl3_install_android
+BUILD_DIR=$HOME/Desktop/sdl3_build_android
 
 mkdir -p ${INSTALL_DIR}
 
@@ -44,7 +44,7 @@ done
 
 # 复制头文件
 mkdir -p ${INSTALL_DIR}/include
-cp -r SDL/include/SDL3 ${INSTALL_DIR}/include/
+cp -r ../SDL/include/SDL3 ${INSTALL_DIR}/include/
 
 # 复制 CMake 配置文件
 find ${BUILD_DIR} -name "*.cmake" -exec cp {} ${INSTALL_DIR}/ \;

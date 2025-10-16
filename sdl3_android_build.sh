@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置变量 macos 其他系统需要更改路径
-SDL_SOURCE_DIR=$(pwd)/SDL
+SDL_SOURCE_DIR=$HOME/Desktop/SDL
 BUILD_DIR=${SDL_SOURCE_DIR}/../sdl3_build_android
 NDK_PATH=$HOME/Library/Android/Sdk/Ndk/25.2.9519653
 CMAKE_BIN=/opt/homebrew/bin/cmake
