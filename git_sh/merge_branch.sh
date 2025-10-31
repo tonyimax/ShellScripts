@@ -1,0 +1,1 @@
+git merge $1
